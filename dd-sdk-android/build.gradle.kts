@@ -196,7 +196,7 @@ javadocConfig()
 dependencyUpdateConfig()
 
 group = "in.porter"
-version = "1.19.3-patch1"
+version = "1.19.3-patch2"
 
 afterEvaluate {
     publishing {
@@ -206,7 +206,7 @@ afterEvaluate {
 
                 groupId = "in.porter"
                 artifactId = "dd-sdk-android"
-                version = "1.19.3-patch1"
+                version = "1.19.3-patch2"
 
                 pom {
                     name.set("dd-sdk-android")
