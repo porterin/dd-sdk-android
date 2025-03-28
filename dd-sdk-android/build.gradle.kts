@@ -124,6 +124,12 @@ android {
         checkGeneratedSources = true
         ignoreTestSources = true
     }
+
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+        }
+    }
 }
 
 dependencies {
@@ -188,4 +194,47 @@ kotlinConfig()
 junitConfig()
 javadocConfig()
 dependencyUpdateConfig()
-publishingConfig("Datadog monitoring library for Android applications.")
+
+group = "in.porter"
+version = "1.19.3-patch1"
+
+afterEvaluate {
+    publishing {
+        publications {
+            create<MavenPublication>("s3") {
+                from(components["release"])
+
+                groupId = "in.porter"
+                artifactId = "dd-sdk-android"
+                version = "1.19.3-patch1"
+
+                pom {
+                    name.set("dd-sdk-android")
+                    description.set("Forked Datadog SDK with custom file retention")
+                    url.set("https://github.com/porterin/dd-sdk-android")
+
+                    licenses {
+                        license {
+                            name.set("Apache-2.0")
+                            url.set("https://www.apache.org/licenses/LICENSE-2.0")
+                        }
+                    }
+                }
+            }
+        }
+
+        repositories {
+            maven {
+                name = "S3"
+                url = uri("s3://porter-maven/releases")
+                authentication {
+                    create<AwsImAuthentication>("awsIm")
+                }
+            }
+        }
+    }
+}
+
+tasks.matching { it.name.contains("Sonatype") }.configureEach {
+    enabled = false
+}
