@@ -241,3 +241,7 @@ kover {
     )
     instrumentAndroidPackage = false
 }
+
+tasks.matching { it.name.contains("Sonatype") }.configureEach {
+    enabled = false
+}
