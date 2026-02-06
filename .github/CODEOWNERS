@@ -1,8 +1,6 @@
-# Global code owners - RUM Mobile Team
+# CODEOWNERS file
+# This file defines the default code owners for this repository.
+# Code owners are automatically requested for review when someone opens a pull request.
 
-* @DataDog/rum-mobile @DataDog/rum-mobile-android
-
-## Docs
-
-/docs/ @DataDog/documentation @DataDog/rum-mobile 
-*README.md @DataDog/documentation @DataDog/rum-mobile 
+# Default owner for everything in the repo
+* @porterin/cest-core-engineering-codeowners @porterin/cest-central-eng-codeowners
